@@ -604,16 +604,24 @@ document.addEventListener('click', function(event) {
     }
 }, { passive: true });
 
-// Initialize everything when page loads
+// Initialize everything when page loads - optimized for performance
 document.addEventListener('DOMContentLoaded', function() {
-    // Add loaded class for any final animations
-    document.body.classList.add('loaded');
+    // Use requestIdleCallback for non-critical tasks
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+            document.body.classList.add('loaded');
+            console.log('Pure Moringa Review Page Loaded Successfully!');
+        });
+    } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(function() {
+            document.body.classList.add('loaded');
+            console.log('Pure Moringa Review Page Loaded Successfully!');
+        }, 0);
+    }
     
     // Show welcome modal after a short delay
     setTimeout(showWelcomeModal, 1000);
-    
-    // Initialize any remaining functionality
-    console.log('Pure Moringa Review Page Loaded Successfully!');
 });
 
 // Fallback for older browsers
