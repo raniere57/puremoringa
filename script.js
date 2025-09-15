@@ -602,7 +602,7 @@ document.addEventListener('click', function(event) {
     if ((event.target === modal || event.target === modal.querySelector('.modal-overlay')) && !modal.classList.contains('hidden')) {
         closeWelcomeModal();
     }
-});
+}, { passive: true });
 
 // Initialize everything when page loads
 document.addEventListener('DOMContentLoaded', function() {
